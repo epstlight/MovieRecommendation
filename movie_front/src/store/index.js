@@ -1,48 +1,46 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import jwtDecode  from 'jwt-decode'
-
+import jwtDecode from 'jwt-decode'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   // 상태 (data)
   state: {
-    token: null, 
+    token : null,
   },
-  // computed 
-  getters: {
-    isLoggedIn(state) {
+  // computed
+  getters:{
+    isLoggedIn(state){
       return state.token ? true : false
     },
-    options(state) {
+    options(state){
       return {
-        headers: {
-          Authorization: 'JWT ' + state.token
+        headers:{
+          Authorization : 'JWT ' + state.token 
         }
       }
     },
-    userId(state) {
-      // token 값이 있을 때만 실행 
+    userId(state){
       return state.token ? jwtDecode(state.token).user_id : null
-    }
+    },
   },
-  // 상태를 변경하는 함수 
+  // 상태를 변경하는 함수
   mutations: {
-    setToken(state, token) {
-      state.token = token 
+    setToken(state, token){
+      state.token = token
     }
   },
-  // method 
+  // methods
   actions: {
-    login(context, token) {
+    login(context, token){
       context.commit('setToken', token)
-    }, 
-    logout(context) {
+    },
+    logout(context){
       context.commit('setToken', null)
     }
   },
 
-  // 집합? 
+
   modules: {
   }
 })

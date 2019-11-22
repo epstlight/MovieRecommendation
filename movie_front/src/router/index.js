@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 // @ => src 폴더 / .vue 도 생략 가능 
 import Login from '@/views/Login'
+import Signup from '@/views/Signup'
 
 Vue.use(VueRouter)
 
@@ -16,7 +17,12 @@ const routes = [
     path: '/login',
     name: 'login',
     component: Login
-  }
+  },
+  {
+    path: '/signup',
+    name: 'signup',
+    component: Signup
+  },
 ]
 
 const router = new VueRouter({

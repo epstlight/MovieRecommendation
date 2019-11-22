@@ -25,6 +25,7 @@ export default {
     ]) 
   },
   components: {
+    
   },
   methods: {
     // 사용자 로그인 유무를 확인하여 로그인되어있지 않을 시 로그인 페이지로 보내겠다. 
@@ -52,7 +53,6 @@ export default {
   watch: {
     isLoggedIn() {
       this.checkLoggedIn()
-    
     }
   }
 }

@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h1>로그인 페이지입니다.</h1>
+    <h1>Log In</h1>
     <!-- 3. 컴포넌트 사용 -->
+    <hr>
     <LoginForm />
   </div>
 </template>
