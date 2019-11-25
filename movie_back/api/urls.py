@@ -1,4 +1,3 @@
-
 from django.urls import path, include
 from . import views
 
@@ -11,4 +10,5 @@ urlpatterns = [
     path('movies/<int:movie_id>/', views.movie_detail),
     path('ratings/<int:user_id>/', views.ratings),
     path('movies_update/', views.movies_update),
+    path('movies/search/', views.search, name='api_search'),
 ]
