@@ -44,7 +44,7 @@ def movies_update(request):
     result = requests.get(f'{url}&targetDt={targetDt}').json()
     for movie_info in result.get('boxOfficeResult').get('weeklyBoxOfficeList'): 
         movie_code = movie_info.get('movieCd')
-        movie_name = movie_info.get('movieNm')ww
+        movie_name = movie_info.get('movieNm')
         movie_audinum = f'({targetDt}) ' + movie_info.get('audiAcc')  
 
         if movie_code not in movie_list:  # 중복을 제거하기 위한 if문

@@ -9,8 +9,9 @@ class Movie(models.Model):
     director = models.CharField(max_length=50)
     poster_url = models.TextField()
     trailer_url = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
+    openddt = models.DateTimeField()
     naver_score = models.IntegerField()
+    grade = models.CharField(max_length=50)
     avr_score = models.IntegerField(default=0)
     liked_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='liked_movies') 
 
