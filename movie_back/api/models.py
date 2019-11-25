@@ -3,7 +3,7 @@ from django.conf import settings
 # Create your models here.
 
 class Movie(models.Model):
-    title = models.CharField(max_length=150)
+    title = models.CharField(max_length=150, unique=True)
     title_en = models.CharField(max_length=150)
     summary = models.TextField()
     director = models.CharField(max_length=50)

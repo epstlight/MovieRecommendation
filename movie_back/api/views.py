@@ -28,6 +28,10 @@ def movies_update(request):
     pass 
 
 
+
+
+
+
 KEY = config('MOVIE_API_KEY')
 url = f'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key={KEY}&weekGb=0'
 CLIENT_ID = config('NAVER_API_ID')

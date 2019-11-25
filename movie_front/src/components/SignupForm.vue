@@ -55,10 +55,10 @@
       </div>
 
       <div class="form-group">
-        <label for="gender">성별</label>
+        <label for="gender">Gender</label>
         <select id="gender" class="form-control" v-model="credentials.gender">
-          <option selected value="0">남자</option>
-          <option value="1">여자</option>
+          <option selected value="0">Man</option>
+          <option value="1">Woman</option>
         </select>
       </div>
 
@@ -91,35 +91,34 @@ export default {
         this.loading = true;
         const SERVER_IP = process.env.VUE_APP_SERVER_IP;
         const signUpData = {
-          username : this.credentials.username,
-          password : this.credentials.password,
-          email : this.credentials.email,
-          gender : this.credentials.gender
+          username: this.credentials.username,
+          password: this.credentials.password,
+          email: this.credentials.email,
+          gender: this.credentials.gender
         }
-        axios.post(SERVER_IP + "/accounts/signup/", signUpData)
-          .then(response => {
-            console.log(response)
-            // axios.post(SERVER_IP + "/api-token-auth/", {username: this.credentials.username, password:this.credentials.password})
-            //   .then(response => {
-              // this.$session.start();
-              // this.$session.set("jwt", response.data.token);
-              // this.$store.dispatch("login", response.data.token);
-            router.push("/");
-            //     this.loading = false;
-            //   })
-            //   .catch(error => {
-            //     console.log(error);
-            //     this.loading = false;
-            //   })
+        
+        axios
+          .post(SERVER_IP + "/accounts/signup/", signUpData)
+          .then( () => {
+            axios.post(SERVER_IP + "/api-token-auth/", {username: this.credentials.username, password:this.credentials.password})
+              .then(response => {
+              this.$session.start();
+              this.$session.set("jwt", response.data.token);
+              this.$store.dispatch("login", response.data.token);
+              this.loading = false
+              router.push("/")
+              })
+            .catch(error => {
+              console.log(error)
+              this.loading = false
+            })
           })
           .catch(error => {
-            console.log(error);
-            this.loading = false;
-          });
+            console.log(error)
+            this.loading = false
+          })
       }
     },
-
-    
     checkForm() {
       this.errors = [];
       if (!this.credentials.username) {
@@ -128,13 +127,19 @@ export default {
       if (this.credentials.password.length < 8) {
         this.errors.push("비밀번호는 8글자 이상 입력해주세요.");
       }
-      if (this.credentials.password !== this.credentials.password_check){
-        this.errors.push("비밀번호가 일치하지 않습니다.")
+      if (this.credentials.password !== this.credentials.password_check) {
+        this.errors.push("비밀번호가 일치하지 않습니다.");
+      }
+      if (this.credentials.email.indexOf('@')===-1){
+        this.errors.push("E-mail 양식에 맞지 않습니다.");
       }
       if (this.errors.length === 0) {
         return true;
       }
     }
+  },
+  mounted(){
+    
   }
 };
 </script>

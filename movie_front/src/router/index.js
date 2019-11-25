@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 // @ => src 폴더 / .vue 도 생략 가능 
 import Login from '@/views/Login'
 import Signup from '@/views/Signup'
+import Userprofile from '@/views/Userprofile'
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,11 @@ const routes = [
     name: 'signup',
     component: Signup
   },
+  {
+    path: '/userprofile',
+    name: 'userprofile',
+    component: Userprofile
+  }
 ]
 
 const router = new VueRouter({

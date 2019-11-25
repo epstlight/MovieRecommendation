@@ -3,13 +3,16 @@
     <div id="nav">
       <div v-if="isLoggedIn">
         <!-- prevent로 사용하는 이유는 리다이렉트를 방지하기 위해 -->
-        <router-link to="/">Home</router-link> |
-        <a @click.prevent="logout" href="/logout">Logout</a>
+        <router-link to="/">Home</router-link> 
+        <a class="float-right" @click.prevent="logout" href="logout/">Logout</a>
+        <span class="float-right mx-1"> | </span>
+        <router-link class="float-right" to="/userprofile" ><img src="@/images/user_1.png" alt="userprofile"></router-link> 
       </div>
       <div v-else>
-        <router-link to="/">Home</router-link> |
-        <router-link to="/login" >LogIn</router-link> |
-        <router-link to="/signup" >SignUp</router-link>
+        <router-link to="/">Home</router-link>
+        <router-link class="float-right" to="/login" >Login</router-link>
+        <span class="float-right mx-1"> | </span>
+        <router-link class="float-right" to="/signup" >Signup</router-link> 
       </div>
     </div>
     <div class="container col-6">
@@ -32,7 +35,7 @@ export default {
     logout(){
       this.$session.destroy()
       this.$store.dispatch('logout')
-      router.push('/login')
+      router.push('/')
     },
   },
   computed:{

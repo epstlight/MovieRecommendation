@@ -4,6 +4,7 @@
     <hr>
     <SignupForm />
   </div>
+  
 </template>
 
 <script>
