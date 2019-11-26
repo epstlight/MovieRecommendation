@@ -1,17 +1,13 @@
 <template>
-  <div class="card border col-2">
-    <a class="" @click="goDetailPage" href=''>
-      <img :src="movie.poster_url" class="card-img-top" alt="poster" />
-      <div class="card-body">
-        <span class="badge badge-success" v-text="movie.naver_score"></span>
-        <span class="badge badge-primary ml-1" v-text="movie.avr_score"></span>
-        <h4 class="card-title mt-1" v-text="movie.title"></h4>
-        <p class="card-text">
-          <small class="text-muted" v-text="movie.opendt"></small>
-        </p>
-      </div>
-    </a>
-  </div>
+  <b-card class="card border col-3" title="" :img-src="movie.poster_url" img-alt="poster" img-top>
+    <b-card-text>
+      <span class="badge badge-success" v-text="movie.naver_score"></span>
+      <span class="badge badge-primary ml-1" v-text="movie.avr_score"></span>
+      <br />
+      <h4 class="card-title mt-1" v-text="movie.title"></h4>
+      <small class="text-muted" v-text="movie.opendt"></small>
+    </b-card-text>
+  </b-card>
 </template>
 
 <script>

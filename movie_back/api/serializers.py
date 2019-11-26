@@ -2,6 +2,7 @@ from rest_framework import serializers
 from .models import Movie, Genre, Rating
 
 class MovieSerializer(serializers.ModelSerializer):
+    
     class Meta:
         model = Movie
         fields = ['id', 'movieCd', 'title', 'title_en', 'summary', 'director', 'naver_score', 'avr_score', 'poster_url', 'trailer_url', 'opendt', 'liked_users', 'genres']
