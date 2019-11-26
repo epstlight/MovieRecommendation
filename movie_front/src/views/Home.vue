@@ -64,14 +64,14 @@ export default {
   name: "Home",
   data() {
     return {
-      genreText : '장르별',
+      genreText: "장르별",
       origin_movies: [],
       movies: [],
       genres: [],
       sortNm: 0,
       searchBool: true,
       phSearch: "",
-      searchText: ""
+      searchText: "",
     };
   },
   computed: {
@@ -136,17 +136,22 @@ export default {
     },
 
     selectGenre(value) {
-      this.genreText = value
+      this.genreText = value;
       this.movies = this.origin_movies.filter(movie => {
+        let tempBool = false;
         for (let item of movie.genres) {
-          return item.name == value;
+          if (item.name === value) {
+            tempBool = true;
+            break;
+          }
         }
+        return tempBool
       });
     },
 
     selectTotal() {
       this.searchBool = true;
-      this.genreText = '장르별'
+      this.genreText = "장르별";
       this.movies = this.origin_movies;
     },
 
@@ -163,6 +168,7 @@ export default {
 
     searching() {
       this.selectTotal();
+      this.searchingBool = true
       if (!this.searchText.trim()) {
         return;
       }
@@ -184,6 +190,7 @@ export default {
         this.movies = this.origin_movies.filter(movie => {
           return movie.title.indexOf(this.searchText.trim()) !== -1;
         });
+        console.log(this.movies[0]);
         this.searchText = "";
       }
     }
