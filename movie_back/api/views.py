@@ -1,17 +1,24 @@
 from django.shortcuts import render, get_object_or_404
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from .models import Genre, Movie, Rating
+from .models import Genre, Movie, Rating, Actor
 from .serializers import GenreSerializer, MovieDetailSerializer, MovieSerializer, RatingSerializer
+from rest_framework.permissions import AllowAny 
 
+
+import json
 import requests, csv
 from pprint import pprint
 from decouple import config
 from datetime import datetime, timedelta
 # Create your views here.
 
+@api_view(['GET'])
+@permission_classes([AllowAny])
 def movies(request):
-    pass
+    movies = Movie.objects.all()
+    serializer = MovieSerializer(movies, many=True)
+    return Response(serializer.data)
 
 def movies_genre(request):
     pass
@@ -23,41 +30,37 @@ def ratings(request, user_id):
     pass
 
 
-@api_view(['POST'])
-def movies_update(request):
-    pass 
+# def movies_update(request):
+#     movie_data = {}
+#     with open('db.json', encoding='utf-8') as json_file:
+#         json_data = json.load(json_file)
+#         for key in json_data.keys():
+            
+#             for genre in json_data[key]["genreType"]:
+#                 genre = genre.strip()
+#                 all_genre = Genre.objects.all()
+#                 if all_genre.filter(genreType=genre).exists():
+#                     continue
+#                 temp_genre = Genre(genreType=genre)
+#                 temp_genre.save()
+#             for actor in json_data[key]["actor"]:
+#                 all_actor = Actor.objects.all()              
+#                 if all_actor.filter(actor=actor).exists():
+#                     continue
+#                 temp_actor = Actor(actor=actor)
+#                 temp_actor.save()
 
 
+#             movie = Movie.objects.all()
+#             movieCd = json_data[key]['movieCd']
+#             if movie.filter(movieCd=movieCd).exists():
+#                 continue
+#             movie = Movie(movieCd=json_data[key]['movieCd'], title=json_data[key]['title'], title_en=json_data[key]['title_en'],
+#             summary=json_data[key]['summary'], director=json_data[key]['director'], poster_url=json_data[key]['poster_url'],
+#             trailer_url=json_data[key]['trailer_url'], opendt=json_data[key]['opendt'], naver_score=json_data[key]['naver_score'], 
+#             grade=json_data[key]['grade'])
+#             movie.save()
 
-
-
-
-KEY = config('MOVIE_API_KEY')
-url = f'http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?key={KEY}&weekGb=0'
-CLIENT_ID = config('NAVER_API_ID')
-CLIENT_SECRET = config('NAVER_API_SECRET')
-BASE_URL = f'https://openapi.naver.com/v1/search/movie.json'
-URL_HEADER = {
-    'X-Naver-Client-Id': CLIENT_ID,
-    'X-Naver-Client-Secret': CLIENT_SECRET
-}
-
-
-def movies_update(request):
-    targetDt = (datetime.now().strftime('%Y%m%d') - timedelta(weeks=i)).strftime('%Y%m%d')
-    result = requests.get(f'{url}&targetDt={targetDt}').json()
-    for movie_info in result.get('boxOfficeResult').get('weeklyBoxOfficeList'): 
-        movie_code = movie_info.get('movieCd')
-        movie_name = movie_info.get('movieNm')
-        movie_audinum = f'({targetDt}) ' + movie_info.get('audiAcc')  
-
-        if movie_code not in movie_list:  # 중복을 제거하기 위한 if문
-            movie_list.append(movie_code)
-            movie_info_row = {
-                '영화 대표코드': movie_code, 
-                '영화명': movie_name, 
-                '(해당일) 누적관객수': movie_audinum,
-            }
-            writer.writerow(movie_info_row)
+#     return redirect('/')
 
 
