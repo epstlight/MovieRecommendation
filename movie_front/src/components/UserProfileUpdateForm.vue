@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"; // import vuex from 'vuex', vuex.mapGetters와 같은 문법
+import { mapGetters } from "vuex"; 
 import axios from "axios";
 import router from "@/router";
 export default {
@@ -165,6 +165,11 @@ export default {
     if (this.isLoggedIn) {
       this.credentials.email = this.credential.email;
       this.credentials.gender = this.credential.gender;
+    }
+  },
+  watch: {
+    isLoggedIn() {
+      this.checkLoggedIn()
     }
   }
 };

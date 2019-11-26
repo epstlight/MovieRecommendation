@@ -1,21 +1,20 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <div id="nav" class="header clearfix navbar-expand-sm navbar-light bg-light">
       <div v-if="isLoggedIn">
-        <!-- prevent로 사용하는 이유는 리다이렉트를 방지하기 위해 -->
-        <router-link to="/">Home</router-link> 
+        <router-link to="/">Movie Infomation</router-link> 
         <a class="float-right" @click.prevent="logout" href="logout/">Logout</a>
         <span class="float-right mx-1"> | </span>
         <router-link class="float-right" to="/userprofile" ><img src="@/images/user_1.png" alt="userprofile"></router-link> 
       </div>
       <div v-else>
-        <router-link to="/">Home</router-link>
+        <router-link to="/">Movie Infomation</router-link>
         <router-link class="float-right" to="/login" >Login</router-link>
         <span class="float-right mx-1"> | </span>
         <router-link class="float-right" to="/signup" >Signup</router-link> 
       </div>
     </div>
-    <div class="container col-6">
+    <div class="mx-5">
       <router-view/>
     </div>
   </div>
@@ -28,7 +27,6 @@ export default {
   name:'App',
   data(){
     return {
-      // isLoggedIn: this.$session.has('jwt')
     } 
   },
   methods:{
@@ -43,10 +41,6 @@ export default {
       return this.$store.getters.isLoggedIn
     }
   },
-  // data에 변화가 일어나느 시점에 실행하는 함수 
-  // updated(){
-  //   this.isLoggedIn = this.$session.has('jwt')
-  // },
   mounted(){
     if(this.$session.has('jwt')){
       const token = this.$session.get('jwt')
@@ -56,7 +50,6 @@ export default {
 }
 </script>
 
-
 <style>boot
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -64,9 +57,11 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  
 }
 #nav {
   padding: 30px;
+  font-size: 25px;
 }
 #nav a {
   font-weight: bold;

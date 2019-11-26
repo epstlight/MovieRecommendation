@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <div v-if="!updateBool">
       <UserProfileForm :credential="credential" />
       <button class="btn btn-success" @click="update">Update</button>
@@ -33,7 +33,7 @@
 <script>
 import UserProfileForm from "@/components/UserProfileForm";
 import UserProfileUpdateForm from "@/components/UserProfileUpdateForm";
-import { mapGetters } from "vuex"; // import vuex from 'vuex', vuex.mapGetters와 같은 문법
+import { mapGetters } from "vuex"; 
 import axios from "axios";
 import router from "@/router";
 
@@ -43,6 +43,7 @@ export default {
     UserProfileForm,
     UserProfileUpdateForm
   },
+  
   data() {
     return {
       updateBool: false,
@@ -52,9 +53,11 @@ export default {
       credential: {}
     };
   },
+
   computed: {
     ...mapGetters(["isLoggedIn", "options", "userId"])
   },
+
   methods: {
     withdrawConfirm() {
       const SERVER_IP = process.env.VUE_APP_SERVER_IP;
@@ -109,17 +112,7 @@ export default {
           console.log(error);
         });
     },
-    // withdraw() {
-    //   const SERVER_IP = process.env.VUE_APP_SERVER_IP;
-    //   axios
-    //     .delete(`${SERVER_IP}/accounts/withdraw/${this.userId}/`, this.options)
-    //     .then(response => {
-    //       console.log(response);
-    //     })
-    //     .catch(error => {
-    //       console.log(error);
-    //     });
-    // },
+
     checkLoggedIn() {
       if (!this.isLoggedIn) {
         router.push("/login");
@@ -130,6 +123,11 @@ export default {
     if (this.isLoggedIn) {
       this.checkLoggedIn();
       this.getUserProfile();
+    }
+  },
+  watch: {
+    isLoggedIn() {
+      this.checkLoggedIn()
     }
   }
 };

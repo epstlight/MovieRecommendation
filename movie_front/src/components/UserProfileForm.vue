@@ -42,6 +42,11 @@ export default {
     if (this.isLoggedIn) {
       this.checkLoggedIn();
     }
+  },
+  watch: {
+    isLoggedIn() {
+      this.checkLoggedIn()
+    }
   }
 };
 </script>
