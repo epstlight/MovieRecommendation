@@ -20,8 +20,12 @@ def movies(request):
     serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)
 
-def movies_genre(request):
-    pass
+
+@api_view(['GET'])
+def genres(request):
+    genres = Genre.objects.all()
+    serializer = GenreSerializer(genres, many=True)
+    return Response(serializer.data)
 
 def movie_detail(request, movie_id):
     pass

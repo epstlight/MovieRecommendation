@@ -1,12 +1,5 @@
 from rest_framework import serializers
-from .models import Movie, Genre, Rating
-
-class MovieSerializer(serializers.ModelSerializer):
-    
-    class Meta:
-        model = Movie
-        fields = ['id', 'movieCd', 'title', 'title_en', 'summary', 'director', 'naver_score', 'avr_score', 'poster_url', 'trailer_url', 'opendt', 'liked_users', 'genres']
-
+from .models import Movie, Genre, Rating, Director, Actor
 
 class RatingSerializer(serializers.ModelSerializer):
     class Meta:
@@ -22,7 +15,26 @@ class MovieDetailSerializer(serializers.ModelSerializer):
 
 
 class GenreSerializer(serializers.ModelSerializer):
-    movies = MovieSerializer(many=True)
     class Meta:
         model = Genre
-        fields = ['id', 'genreType', 'movies']
+        fields = ['id', 'name' ]
+
+
+class DirectorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Director
+        fields = ['id', 'name' ]
+
+class ActorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Actor
+        fields = ['id', 'name' ]
+
+
+class MovieSerializer(serializers.ModelSerializer):
+    genres = GenreSerializer(many=True)
+    directors = DirectorSerializer(many=True)
+    actors = ActorSerializer(many=True)
+    class Meta:
+        model = Movie
+        fields = ['id', 'movieCd', 'title', 'title_en', 'summary', 'naver_score', 'avr_score', 'poster_url', 'trailer_url', 'opendt', 'liked_users', 'genres', 'directors', 'actors']
