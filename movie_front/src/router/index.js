@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 import Login from '@/views/Login'
 import Signup from '@/views/Signup'
 import Userprofile from '@/views/Userprofile'
+import Moviedetail from '@/views/Moviedetail'
 
 Vue.use(VueRouter)
 
@@ -28,7 +29,14 @@ const routes = [
     path: '/userprofile',
     name: 'userprofile',
     component: Userprofile
+  },
+  {
+    path:'/moviedetail/:id',
+    name: 'moviedetail',
+    props: true,
+    component: Moviedetail
   }
+
 ]
 
 const router = new VueRouter({

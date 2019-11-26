@@ -50,7 +50,7 @@
         <option value="2">회원평점순</option>
       </select>
     </div>
-    <MovieList :movies="selectSort" />
+    <MovieList :movies="selectSort"/>
   </div>
 </template>
 
@@ -190,7 +190,6 @@ export default {
         this.movies = this.origin_movies.filter(movie => {
           return movie.title.indexOf(this.searchText.trim()) !== -1;
         });
-        console.log(this.movies[0]);
         this.searchText = "";
       }
     }

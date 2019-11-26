@@ -45,7 +45,7 @@
 
       <div class="form-group">
         <label for="email">E-mail</label>
-        <input
+        <input @keydown.enter="signup"
           type="text"
           id="email"
           class="form-control"

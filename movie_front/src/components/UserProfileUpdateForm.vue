@@ -16,7 +16,7 @@
       <h4 class="mb-4">ID : {{ credential.username }}</h4>
       <div class="form-group" v-if="!checkBool">
         <label for="password">기존 Password</label>
-        <input
+        <input @keydown.enter="checkpassword"
           type="password"
           id="password"
           class="form-control"
@@ -43,7 +43,7 @@
       </div>
       <div class="form-group">
         <label for="change_password_check">Password 확인</label>
-        <input
+        <input 
           type="password"
           id="change_password_check"
           class="form-control"
@@ -54,7 +54,7 @@
 
       <div class="form-group">
         <label for="email">E-mail</label>
-        <input type="text" id="email" class="form-control" v-model="credentials.email" />
+        <input @keydown.enter="updateProfile" type="text" id="email" class="form-control" v-model="credentials.email" />
       </div>
 
       <div class="form-group">

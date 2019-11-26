@@ -24,7 +24,7 @@
 
       <div class="form-group">
         <label for="password">Password</label>
-        <input
+        <input @keydown.enter="login"
           type="password"
           id="password"
           class="form-control"
