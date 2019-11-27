@@ -2,7 +2,6 @@
   <b-card class="card border col-3" title="" :img-src="movie.poster_url" img-alt="poster" img-top>
     <b-card-text>
       <span class="badge badge-success" v-text="movie.naver_score"></span>
-      <span class="badge badge-primary ml-1" v-text="movie.avr_score"></span>
       <br />
       <h4 class="card-title mt-1 mb-0" v-text="movie.title" @click="goDetail"></h4>
       <small class="text-muted mb-0" >({{ movie.grade }})</small>
@@ -20,11 +19,11 @@ export default {
     movie: {
       type: Object,
       required: true
-    }
+    },
   },
   data(){
     return{
-      movie_detail : {}
+      movie_detail : {},
     }
   },
   computed: {
@@ -33,8 +32,10 @@ export default {
   methods: {
     goDetail(){
       router.push(`/moviedetail/${this.movie.id}`)
-    }
+    },
   },
+  mounted(){
+  }
 };
 </script>
 

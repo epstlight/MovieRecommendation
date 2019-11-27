@@ -8,13 +8,6 @@ from rest_framework.permissions import AllowAny
 from rest_framework import serializers
 
 
-import json
-import requests, csv
-from pprint import pprint
-from decouple import config
-from datetime import datetime, timedelta
-# Create your views here.
-
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def movies(request):
@@ -67,47 +60,21 @@ def rating_add(request):
 @api_view(['GET'])
 def unlike_like(request, movie_id, user_id):
     movie = get_object_or_404(Movie, pk=movie_id)
-    
+    user = get_object_or_404(User, pk=user_id)
     if user in movie.liked_users.all():
         movie.liked_users.remove(user)
     else:
         movie.liked_users.add(user)
     return Response('Success')
 
-    
 
+@api_view(['GET'])
+def get_rating(request, rating_id):
+    rating = get_object_or_404(Rating, pk=rating_id)
+    serializer = RatingSerializer(rating)
+    return Response(serializer.data)
 
-# def movies_update(request):
-#     movie_data = {}
-#     with open('db.json', encoding='utf-8') as json_file:
-#         json_data = json.load(json_file)
-#         for key in json_data.keys():
-            
-#             for genre in json_data[key]["genreType"]:
-#                 genre = genre.strip()
-#                 all_genre = Genre.objects.all()
-#                 if all_genre.filter(genreType=genre).exists():
-#                     continue
-#                 temp_genre = Genre(genreType=genre)
-#                 temp_genre.save()
-#             for actor in json_data[key]["actor"]:
-#                 all_actor = Actor.objects.all()              
-#                 if all_actor.filter(actor=actor).exists():
-#                     continue
-#                 temp_actor = Actor(actor=actor)
-#                 temp_actor.save()
-
-
-#             movie = Movie.objects.all()
-#             movieCd = json_data[key]['movieCd']
-#             if movie.filter(movieCd=movieCd).exists():
-#                 continue
-#             movie = Movie(movieCd=json_data[key]['movieCd'], title=json_data[key]['title'], title_en=json_data[key]['title_en'],
-#             summary=json_data[key]['summary'], director=json_data[key]['director'], poster_url=json_data[key]['poster_url'],
-#             trailer_url=json_data[key]['trailer_url'], opendt=json_data[key]['opendt'], naver_score=json_data[key]['naver_score'], 
-#             grade=json_data[key]['grade'])
-#             movie.save()
-
-#     return redirect('/')
-
-
+def get_movie(request, movie_id):
+    movie = get_object_or_404(Movie, pk=movie_id)
+    serializer = MovieSerializer(rating)
+    return Response(serializer.data)

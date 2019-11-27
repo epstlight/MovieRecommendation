@@ -102,6 +102,7 @@ export default {
       axios
         .get(`${SERVER_IP}/accounts/userprofile/${this.userId}/`, this.options)
         .then(response => {
+          console.log(response.data)
           this.credential = {
             username: response.data.username,
             email: response.data.email,

@@ -3,7 +3,7 @@
     <div>
       <h2 class="d-flex justify-content-center">{{ movie.title }}</h2>
       <div class="d-flex justify-content-between">
-        <b-button size="sm" class="sm align-self-end" @click="goBack">목록으로</b-button>
+        <b-button size="sm" class="sm align-self-end" @click="goBack">뒤로가기</b-button>
         <!-- <b-button class="sm align-self-end p-0 b-0" v-if="likeBool" @click="movie_like"> -->
         <h5
           class="text-muted d-inline ml-5"
@@ -35,23 +35,19 @@
       </b-col>
       <b-col>
         <div>
-          <span v-for="genre in movie.genres" :key="genre.id">{{ genre.name }} |</span>
+          <span v-for="genre in movie.genres" :key="genre.id">{{ genre.name }} | </span>
           <span>{{ movie.grade }} |</span>
           <span>
             네이버 :
-            <span class="badge badge-success">{{ movie.naver_score }}</span> |
-          </span>
-          <span>
-            유저 :
-            <span class="badge badge-primary">{{ movie.avr_score }}</span> |
+            <span class="badge badge-success">{{ movie.naver_score }}</span>
           </span>
         </div>
         <div>
-          <span class="font-weight-bold">감독:</span>
+          <span class="font-weight-bold">감독 : </span>
           <span>{{director_list.join(', ')}}</span>
-          <span>|</span>
-          <span class="font-weight-bold">배우:</span>
-          <span>{{ actor_list.join(', ') }}</span>
+          <span> | </span>
+          <span class="font-weight-bold">배우 : </span>
+          <span>{{ actor_list.join(', ')  }}</span>
         </div>
         <div class="mt-2">
           <hr />
@@ -93,23 +89,49 @@
       </b-col>
     </b-row>
     <hr />
-    <div id="review-div" v-for="rating in movie.ratings" :key="rating.id">
-      <b-row class="justify-content-center mx-3 mt-3">
-        <b-col>
-          <span class="font-weight-bold" style="font-size:1.8rem;">{{rating.username}}  </span>
-          <span class="text-muted" style="font-size:1rem;">{{ rating.created_at.substr(5, 5).replace('-', '/') }} {{ rating.created_at.substr(11,5)}} </span>
-          <img src="@/images/star.png" alt="score">
-          <div class="mt-2 pl-3" >{{ rating.comment }}</div>
-        </b-col>
-        <b-col col lg="3" align-self="center" class="mt-3">
-          <img v-if="userId === rating.user" class="btn" src="@/images/delete_rating.png" alt="delete" @click="deleteRating(rating.id)">
-        </b-col>
-      </b-row>
-      <hr>
-    </div>
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <div id="review-div" class="mb-3" v-for="rating in movie.ratings" :key="rating.id">
+        <div class="card my-1">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-2">
+                <p
+                  class="text-secondary text-center"
+                >{{ rating.created_at.substr(5, 5).replace('-', '/') }} {{ rating.created_at.substr(11,5)}}</p>
+              </div>
+              <div class="col-md-10">
+                <p>
+                  <a class="float-left">
+                    <strong>{{rating.username}}</strong>
+                  </a>
+                  <span class="float-right" v-for="i in rating.score" :key="i">
+                    <i class="text-warning fa fa-star"></i>
+                  </span>
+                </p>
+                <div class="clearfix"></div>
+                <p>{{ rating.comment }}</p>
+                <div class="float-right">
+                <img
+                  v-if="userId === rating.user"
+                  class="btn mx-auto"
+                  src="@/images/delete_rating.png"
+                  alt="delete"
+                  style="cursor:pointer;"
+                  @click="deleteRating(rating.id)"
+                />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
 </template>
-
 <script>
 import { mapGetters } from "vuex";
 import axios from "axios";
@@ -167,6 +189,9 @@ export default {
     },
     addRating() {
       const SERVER_IP = process.env.VUE_APP_SERVER_IP;
+      if (this.rating.score > 10){
+        this.rating.score = 10
+      }
       axios
         .post(
           `${SERVER_IP}/api/v1/movies/rating_add/`,
@@ -180,7 +205,7 @@ export default {
         )
         .then(response => {
           response.data;
-          this.movie.ratings.unshift(response.data)
+          this.movie.ratings.unshift(response.data);
           this.rating.comment = "";
           this.rating.score = 0;
         })
@@ -188,27 +213,24 @@ export default {
           console.log(error);
         });
     },
-    deleteRating(rating_id){
+    deleteRating(rating_id) {
       const SERVER_IP = process.env.VUE_APP_SERVER_IP;
       axios
-        .delete(
-          `${SERVER_IP}/api/v1/rating_delete/${rating_id}/`,
-          this.options
-        )
+        .delete(`${SERVER_IP}/api/v1/rating_delete/${rating_id}/`, this.options)
         .then(response => {
           console.log(response.data);
-          const itemToFind = this.movie.ratings.find(function(item) {return item.id === rating_id}) 
-          const idx = this.movie.ratings.indexOf(itemToFind) 
-          if (idx > -1) this.movie.ratings.splice(idx, 1)
+          const itemToFind = this.movie.ratings.find(function(item) {
+            return item.id === rating_id;
+          });
+          const idx = this.movie.ratings.indexOf(itemToFind);
+          if (idx > -1) this.movie.ratings.splice(idx, 1);
         })
         .catch(error => {
           console.log(error);
         });
     }
-
   }
 };
 </script>
-
 <style>
 </style>

@@ -6,7 +6,7 @@ from accounts.models import User
 class RatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rating
-        fields = ['id', 'comment', 'score', 'created_at', 'user', 'username', 'movietitle']
+        fields = ['id', 'comment', 'score', 'created_at', 'user', 'username', 'movietitle', 'movie']
 
 
 class GenreSerializer(serializers.ModelSerializer):
@@ -31,14 +31,13 @@ class MovieSerializer(serializers.ModelSerializer):
     genres = GenreSerializer(many=True)
     directors = DirectorSerializer(many=True)
     actors = ActorSerializer(many=True)
+    ratings = RatingSerializer(many=True)
     class Meta:
         model = Movie
-        fields = ['id', 'title', 'naver_score', 'avr_score', 'poster_url', 'opendt', 'genres', 'directors', 'actors', 'grade']
-
+        fields = ['id', 'title', 'naver_score', 'avr_score', 'poster_url', 'opendt', 'genres', 'directors', 'actors', 'grade', 'ratings']
 
 
 class MovieDetailSerializer(serializers.ModelSerializer):
-    # ratings = RatingSerializer(many=True)
     genres = GenreSerializer(many=True)
     directors = DirectorSerializer(many=True)
     actors = ActorSerializer(many=True)
@@ -47,11 +46,3 @@ class MovieDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
         fields = ['id', 'title', 'title_en', 'summary', 'naver_score', 'avr_score', 'poster_url', 'trailer_url', 'opendt', 'genres', 'directors', 'actors', 'grade', 'liked_users', 'ratings']
-
-
-class UserPageSerializer(serializers.ModelSerializer):
-    ratings = RatingSerializer(many=True)
-    movies = MovieSerializer(many=True)
-    class Meta:
-        model = User
-        fields = ['id', 'username', 'email', 'gender', 'password', 'ratings', 'movies']
