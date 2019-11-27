@@ -50,7 +50,7 @@
         <option value="2">회원평점순</option>
       </select>
     </div>
-    <MovieList :movies="selectSort"/>
+    <MovieList :movies="selectSort" :currentPage="currentPage"/>
   </div>
 </template>
 
@@ -64,6 +64,7 @@ export default {
   name: "Home",
   data() {
     return {
+      currentPage:1,
       genreText: "장르별",
       origin_movies: [],
       movies: [],
