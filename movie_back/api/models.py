@@ -17,7 +17,7 @@ class Movie(models.Model):
     summary = models.TextField()
     poster_url = models.TextField()
     trailer_url = models.TextField()
-    opendt =models.DateField()
+    opendt = models.DateField()
     naver_score = models.FloatField()
     grade = models.CharField(max_length=50)
     avr_score = models.FloatField(default=0)
@@ -30,6 +30,7 @@ class Rating(models.Model):
     comment = models.TextField()
     score = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)
-    movies = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='ratings')
-    liked_users = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='liked_ratings')
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='ratings')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='ratings', on_delete=models.CASCADE)
+    username = models.CharField(max_length=50)
     

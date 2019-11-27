@@ -1,17 +1,12 @@
 from rest_framework import serializers
 from .models import Movie, Genre, Rating, Director, Actor
+from accounts.serializers import UserSerializer
+from accounts.models import User
 
 class RatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rating
-        fields = ['id', 'comment', 'score', 'created_at', 'user', 'movie']
-
-
-class MovieDetailSerializer(serializers.ModelSerializer):
-    ratings = RatingSerializer(many=True)
-    class Meta:
-        model = Movie
-        fields = ['id', 'director', 'summary', 'avr_score', 'trailer_url', 'ratings', 'liked_users']
+        fields = ['id', 'comment', 'score', 'created_at', 'user', 'username']
 
 
 class GenreSerializer(serializers.ModelSerializer):
@@ -23,7 +18,8 @@ class GenreSerializer(serializers.ModelSerializer):
 class DirectorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Director
-        fields = ['id', 'name' ]
+        fields = ['id', 'name']
+
 
 class ActorSerializer(serializers.ModelSerializer):
     class Meta:
@@ -37,4 +33,18 @@ class MovieSerializer(serializers.ModelSerializer):
     actors = ActorSerializer(many=True)
     class Meta:
         model = Movie
-        fields = ['id', 'movieCd', 'title', 'title_en', 'summary', 'naver_score', 'avr_score', 'poster_url', 'trailer_url', 'opendt', 'liked_users', 'genres', 'directors', 'actors']
+        fields = ['id', 'title', 'naver_score', 'avr_score', 'poster_url', 'opendt', 'genres', 'directors', 'actors', 'grade']
+
+
+
+class MovieDetailSerializer(serializers.ModelSerializer):
+    # ratings = RatingSerializer(many=True)
+    genres = GenreSerializer(many=True)
+    directors = DirectorSerializer(many=True)
+    actors = ActorSerializer(many=True)
+    liked_users = UserSerializer(many=True)
+    ratings = RatingSerializer(many=True)
+    class Meta:
+        model = Movie
+        fields = ['id', 'title', 'title_en', 'summary', 'naver_score', 'avr_score', 'poster_url', 'trailer_url', 'opendt', 'genres', 'directors', 'actors', 'grade', 'liked_users', 'ratings']
+

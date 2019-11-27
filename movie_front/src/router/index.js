@@ -30,7 +30,7 @@ const routes = [
     name: 'userprofile',
     component: Userprofile
   },
-  {
+  { 
     path:'/moviedetail/:id',
     name: 'moviedetail',
     props: true,
