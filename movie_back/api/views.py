@@ -56,6 +56,7 @@ def rating_add(request):
     rating.user = user
     movie = Movie.objects.get(pk=movie_id)
     rating.movie = movie
+    rating.movietitle = movie.title
     rating.username = user.username
     rating.save()
     serializer = RatingSerializer(instance=rating)

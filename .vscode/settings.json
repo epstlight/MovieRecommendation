@@ -1,5 +1,5 @@
 {
     "git.ignoreLimitWarning": true,
-    "python.pythonPath": "movie_back\\venv\\Scripts\\python.exe",
+    "python.pythonPath": "C:\\Users\\kazya\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
     "python.linting.enabled": false
 }

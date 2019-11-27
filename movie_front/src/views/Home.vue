@@ -13,9 +13,7 @@
           right
           v-if="searchBool"
         >
-          <b-dropdown-item v-if="!isLoggedIn" @click="goLogin">로그인 해주세요.</b-dropdown-item>
           <b-dropdown-item
-            v-else
             v-for="genre in genres"
             :key="genre.id"
             @click="selectGenre(genre.name)"
@@ -30,10 +28,9 @@
           right
           v-if="searchBool"
         >
-          <b-dropdown-item v-if="!isLoggedIn" @click="goLogin">로그인 해주세요.</b-dropdown-item>
-          <b-dropdown-item v-if="isLoggedIn" @click="searchSelect(0)">감독</b-dropdown-item>
-          <b-dropdown-item v-if="isLoggedIn" @click="searchSelect(1)">배우</b-dropdown-item>
-          <b-dropdown-item v-if="isLoggedIn" @click="searchSelect(2)">영화제목</b-dropdown-item>
+          <b-dropdown-item  @click="searchSelect(0)">감독</b-dropdown-item>
+          <b-dropdown-item  @click="searchSelect(1)">배우</b-dropdown-item>
+          <b-dropdown-item  @click="searchSelect(2)">영화제목</b-dropdown-item>
         </b-nav-item-dropdown>
 
         <b-nav-form v-if="!searchBool">
@@ -50,7 +47,7 @@
         <option value="2">회원평점순</option>
       </select>
     </div>
-    <MovieList :movies="selectSort"/>
+    <MovieList :movies="selectSort" :currentPage="currentPage" />
   </div>
 </template>
 
@@ -59,11 +56,11 @@ import MovieList from "@/components/MovieList";
 import axios from "axios";
 import { mapGetters } from "vuex";
 import router from "@/router";
-
 export default {
   name: "Home",
   data() {
     return {
+      currentPage: 1,
       genreText: "장르별",
       origin_movies: [],
       movies: [],
@@ -71,7 +68,7 @@ export default {
       sortNm: 0,
       searchBool: true,
       phSearch: "",
-      searchText: "",
+      searchText: ""
     };
   },
   computed: {
@@ -118,7 +115,6 @@ export default {
           console.log(error);
         });
     },
-
     getGenres() {
       const SERVER_IP = process.env.VUE_APP_SERVER_IP;
       axios
@@ -130,11 +126,9 @@ export default {
           console.log(error);
         });
     },
-
     goLogin() {
       router.push("/login");
     },
-
     selectGenre(value) {
       this.genreText = value;
       this.movies = this.origin_movies.filter(movie => {
@@ -145,16 +139,14 @@ export default {
             break;
           }
         }
-        return tempBool
+        return tempBool;
       });
     },
-
     selectTotal() {
       this.searchBool = true;
       this.genreText = "장르별";
       this.movies = this.origin_movies;
     },
-
     searchSelect(value) {
       this.searchBool = false;
       if (value === 0) {
@@ -165,10 +157,9 @@ export default {
         this.phSearch = "Movie Search";
       }
     },
-
     searching() {
       this.selectTotal();
-      this.searchingBool = true
+      this.searchingBool = true;
       if (!this.searchText.trim()) {
         return;
       }
@@ -194,12 +185,9 @@ export default {
       }
     }
   },
-
   mounted() {
     this.getMovies();
-    if (this.isLoggedIn) {
-      this.getGenres();
-    }
+    this.getGenres();
   }
 };
 </script>
@@ -214,13 +202,11 @@ export default {
   font-size: 20px;
   color: gray;
 }
-
 #nav li a:hover {
   font-size: 21px;
   color: white;
   background-color: gray;
 }
-
 #nav li a:active {
   font-size: 20px;
   color: white;

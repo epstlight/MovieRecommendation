@@ -6,7 +6,7 @@ from accounts.models import User
 class RatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rating
-        fields = ['id', 'comment', 'score', 'created_at', 'user', 'username']
+        fields = ['id', 'comment', 'score', 'created_at', 'user', 'username', 'movietitle']
 
 
 class GenreSerializer(serializers.ModelSerializer):
@@ -48,3 +48,10 @@ class MovieDetailSerializer(serializers.ModelSerializer):
         model = Movie
         fields = ['id', 'title', 'title_en', 'summary', 'naver_score', 'avr_score', 'poster_url', 'trailer_url', 'opendt', 'genres', 'directors', 'actors', 'grade', 'liked_users', 'ratings']
 
+
+class UserPageSerializer(serializers.ModelSerializer):
+    ratings = RatingSerializer(many=True)
+    movies = MovieSerializer(many=True)
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'gender', 'password', 'ratings', 'movies']
