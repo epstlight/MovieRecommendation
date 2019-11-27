@@ -31,10 +31,11 @@ class MovieSerializer(serializers.ModelSerializer):
     genres = GenreSerializer(many=True)
     directors = DirectorSerializer(many=True)
     actors = ActorSerializer(many=True)
+    liked_users = UserSerializer(many=True)
     ratings = RatingSerializer(many=True)
     class Meta:
         model = Movie
-        fields = ['id', 'title', 'naver_score', 'avr_score', 'poster_url', 'opendt', 'genres', 'directors', 'actors', 'grade', 'ratings']
+        fields = ['id', 'title', 'naver_score', 'poster_url', 'opendt', 'genres', 'directors', 'actors', 'grade', 'ratings', 'liked_users']
 
 
 class MovieDetailSerializer(serializers.ModelSerializer):
@@ -45,4 +46,4 @@ class MovieDetailSerializer(serializers.ModelSerializer):
     ratings = RatingSerializer(many=True)
     class Meta:
         model = Movie
-        fields = ['id', 'title', 'title_en', 'summary', 'naver_score', 'avr_score', 'poster_url', 'trailer_url', 'opendt', 'genres', 'directors', 'actors', 'grade', 'liked_users', 'ratings']
+        fields = ['id', 'title', 'title_en', 'summary', 'naver_score', 'poster_url', 'trailer_url', 'opendt', 'genres', 'directors', 'actors', 'grade', 'liked_users', 'ratings']

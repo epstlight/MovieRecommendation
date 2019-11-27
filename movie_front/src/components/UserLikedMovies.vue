@@ -1,6 +1,6 @@
 <template>
   <div class="mt-3">
-    <MovieList :movies="userLikedMoviesList"/>
+    <MovieList :movies="userLikedMoviesList" :currentPage="currentPage"/>
   </div>
 </template>
 
@@ -16,6 +16,11 @@ export default {
   },
   components:{
     MovieList
+  },
+  data(){
+    return{
+      currentPage:1,
+    }
   }
   
 }

@@ -113,24 +113,13 @@ export default {
           console.log(error);
         });
     },
-
-    checkLoggedIn() {
-      if (!this.isLoggedIn) {
-        router.push("/login");
-      }
-    }
   },
-  mounted() {
-    if (this.isLoggedIn) {
-      this.checkLoggedIn();
+  created() {
+    if (!this.isLoggedIn) {
+      router.push('/login')
+    }
       this.getUserProfile();
-    }
   },
-  watch: {
-    isLoggedIn() {
-      this.checkLoggedIn()
-    }
-  }
 };
 </script>
 

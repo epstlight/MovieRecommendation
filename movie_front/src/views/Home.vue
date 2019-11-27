@@ -1,5 +1,5 @@
 <template>
-  <div class="home mx-0 my-2">
+  <div class="home mx-5 mb-2">
     <h1 class="text-center">Movie List</h1>
     <hr />
     <div id="nav" class="p-0">
@@ -126,9 +126,6 @@ export default {
           console.log(error);
         });
     },
-    goLogin() {
-      router.push("/login");
-    },
     selectGenre(value) {
       this.genreText = value;
       this.movies = this.origin_movies.filter(movie => {
@@ -185,9 +182,14 @@ export default {
       }
     }
   },
-  mounted() {
-    this.getMovies();
-    this.getGenres();
+  created() {
+    if (!this.isLoggedIn) {
+      router.push('/login')
+    }
+    else{
+      this.getMovies();
+      this.getGenres();
+    }
   }
 };
 </script>

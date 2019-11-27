@@ -18,6 +18,8 @@ import UserLikedMovies from "@/components/UserLikedMovies";
 import UserRatings from "@/components/UserRatings";
 import axios from "axios";
 import { mapGetters } from "vuex";
+import router from "@/router"
+
 // import router from "@/router";
 export default {
   name: "Userpage",
@@ -76,7 +78,10 @@ export default {
       this.userBool = false
     }
   },
-  mounted() {
+  created() {
+    if (!this.isLoggedIn) {
+      router.push('/login')
+    }
     this.getLikedMovies();
   }
 };

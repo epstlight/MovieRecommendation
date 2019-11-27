@@ -2,15 +2,16 @@
   <div>
     <h1 class="d-flex justify-content-center my-2">Movie Detail</h1>
     <hr />
-    <MovieDetailPage :movie="movie" :director_list="director_list" :actor_list="actor_list" :likeBool="likeBool" />
+    <MovieDetailPage :movie="movie" :director_list="director_list" :actor_list="actor_list" :likeBool="likeBool" @likeUnlike="likeUnlike"/>
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import router from "@/router";
+
 import axios from "axios";
 import MovieDetailPage from "@/components/MovieDetailPage";
-// import router from "@/router";
 
 export default {
   name: "Moviedetail",
@@ -56,9 +57,15 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    likeUnlike(bool){
+      this.likeBool = bool
     }
   },
-  mounted() {
+  created() {
+    if (!this.isLoggedIn) {
+      router.push('/login')
+    }
     this.getMovieDetail();
   }
 };

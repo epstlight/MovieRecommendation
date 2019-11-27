@@ -20,7 +20,6 @@ class Movie(models.Model):
     opendt = models.DateField()
     naver_score = models.FloatField()
     grade = models.CharField(max_length=50)
-    avr_score = models.FloatField(default=0)
     liked_users = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, related_name='liked_movies')
     genres = models.ManyToManyField(Genre, related_name='movies')
     actors = models.ManyToManyField(Actor, related_name='movies')

@@ -11,8 +11,6 @@
 
 <script>
 
-import router from "@/router";
-import { mapGetters } from "vuex"; 
 
 export default {
   name: "UserProfileForm",
@@ -27,27 +25,6 @@ export default {
     return {
     };
   },
-  computed: {
-    ...mapGetters(["isLoggedIn", "options", "userId"])
-  },
-  methods: {
-    checkLoggedIn() {
-      if (!this.isLoggedIn) {
-        router.push("/login");
-      }
-    }
-  },
-  
-  mounted() {
-    if (this.isLoggedIn) {
-      this.checkLoggedIn();
-    }
-  },
-  watch: {
-    isLoggedIn() {
-      this.checkLoggedIn()
-    }
-  }
 };
 </script>
 

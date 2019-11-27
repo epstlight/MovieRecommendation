@@ -8,24 +8,24 @@
         <h5
           class="text-muted d-inline ml-5"
         >{{ movie.title_en }}, {{ String(movie.opendt).substr(0, 4) }}</h5>
-        <b-button variant="white" v-if="likeBool" class="align-self-end">
+        <div>
+          <b-button variant="white" class="align-self-end" @click="movie_like">
           <img
-            @click="movie_like"
+            v-if="likeBool" 
             class="sm btn align-self-end p-0"
             style="cursor:pointer;"
             src="@/images/like.png"
             alt="like"
           />
-        </b-button>
-        <b-button variant="white" v-else class="align-self-end">
           <img
-            @click="movie_like"
+            v-else
             class="btn sm align-self-end p-0"
             style="cursor:pointer;"
             src="@/images/unlike.png"
             alt="unlike"
           />
         </b-button>
+        </div>
       </div>
     </div>
     <hr />
@@ -160,7 +160,7 @@ export default {
     return {
       rating: {
         comment: "",
-        score: 0.0
+        score: 0.0,
       }
     };
   },
@@ -179,9 +179,8 @@ export default {
           this.options
         )
         .then(response => {
-          const temp = this.likeBool;
           console.log(response.data);
-          this.likeBool = temp ? false : true;
+          this.$emit('likeUnlike', this.likeBool ? false : true);
         })
         .catch(error => {
           console.log(error);
@@ -228,7 +227,12 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+    checklikeBool(){
+      return this.likeBool ? true : false
     }
+  },
+  created(){
   }
 };
 </script>

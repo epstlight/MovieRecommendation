@@ -9,11 +9,21 @@
 
 <script>
 import SignupForm from '@/components/SignupForm'
+import { mapGetters } from "vuex";
+import router from "@/router"
 
 export default {
   name: 'Signup',
   components: {
     SignupForm, 
+  },
+  computed: {
+    ...mapGetters(["isLoggedIn", "options", "userId"])
+  },
+  created(){
+    if (this.isLoggedIn) {
+      router.push('/home')
+    }
   }
 }
 </script>

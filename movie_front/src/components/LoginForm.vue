@@ -57,21 +57,16 @@ export default {
   },
   methods: {
     login() {
-      if (this.checkForm()) {
+      if (this.checkForm) {
         this.loading = true;
         const SERVER_IP = process.env.VUE_APP_SERVER_IP;
         axios
           .post(SERVER_IP + "/api-token-auth/", this.credentials)
           .then(response => {
-            // 세션 초기화 사용할 것이다.
             this.$session.start();
-            // 응답 결과를 세션에 저장 key, value값을 받음 {jwt : response.data.toke}
             this.$session.set("jwt", response.data.token);
-            //홈으로 보내주겠다. 로그인이 되었다.
-
-            // vuex store를 this.$store로 접근가능
             this.$store.dispatch("login", response.data.token);
-            router.push("/");
+            router.push("/home");
             this.loading = false;
           })
           .catch(error => {

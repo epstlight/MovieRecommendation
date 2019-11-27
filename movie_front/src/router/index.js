@@ -7,12 +7,18 @@ import Signup from '@/views/Signup'
 import Userprofile from '@/views/Userprofile'
 import Moviedetail from '@/views/Moviedetail'
 import Userpage from '@/views/Userpage'
+import Mainpage from '@/views/Mainpage'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
+    name: 'mainpage',
+    component: Mainpage
+  },
+  {
+    path: '/home',
     name: 'home',
     component: Home
   },

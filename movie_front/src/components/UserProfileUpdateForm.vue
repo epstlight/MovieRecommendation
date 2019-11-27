@@ -167,11 +167,6 @@ export default {
       this.credentials.gender = this.credential.gender;
     }
   },
-  watch: {
-    isLoggedIn() {
-      this.checkLoggedIn()
-    }
-  }
 };
 </script>
 

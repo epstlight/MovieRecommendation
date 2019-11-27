@@ -8,7 +8,9 @@
         :per-page="perPage"
         :current-page="currentPage"
       />
+      <b-card class="col-3" v-for="i in blackMovies1" :key="i"></b-card>
     </b-card-group>
+
     <b-card-group deck class="card-deck mb-5">
       <MovieListItem
         v-for="movie in selectMovies2"
@@ -17,7 +19,9 @@
         :per-page="perPage"
         :current-page="currentPage"
       />
+      <b-card class="col-3" v-for="i in blackMovies2" :key="i"></b-card>
     </b-card-group>
+
     <div class="d-flex justify-content-center mb-3">
       <b-pagination
         v-model="currentPage"
@@ -41,7 +45,7 @@ export default {
       type: Array,
       required: true
     },
-    currentPage:{
+    currentPage: {
       type: Number,
       required: true
     }
@@ -52,7 +56,7 @@ export default {
   },
   data() {
     return {
-      perPage:10,
+      perPage: 10,
     };
   },
   computed: {
@@ -61,20 +65,29 @@ export default {
       const check = (this.currentPage - 1) * this.perPage;
       return this.movies.slice(check + 0, check + 5);
     },
+    blackMovies1: function(){
+      const check = (this.currentPage - 1) * this.perPage;
+      const movie_len = this.movies.slice(check + 0, check + 5).length;
+      return (movie_len === 0 || movie_len === 5 )? 0 : (5 - movie_len)
+    },
     selectMovies2: function() {
       const check = (this.currentPage - 1) * this.perPage;
       return this.movies.slice(check + 5, check + 10);
+    },
+    blackMovies2: function(){
+      const check = (this.currentPage - 1) * this.perPage;
+      const movie_len = this.movies.slice(check + 5, check + 10).length;
+      return (movie_len === 0 || movie_len === 5 )? 0 : (5 - movie_len)
     },
     rows() {
       return this.movies.length;
     }
   },
-  methods: {
-  },
-  mounted(){
+  methods: {},
+  mounted() {
+
   }
 };
 </script>
-
 <style>
 </style>
