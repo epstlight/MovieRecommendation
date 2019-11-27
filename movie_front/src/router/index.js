@@ -6,6 +6,7 @@ import Login from '@/views/Login'
 import Signup from '@/views/Signup'
 import Userprofile from '@/views/Userprofile'
 import Moviedetail from '@/views/Moviedetail'
+import Userpage from '@/views/Userpage'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,11 @@ const routes = [
     path: '/userprofile',
     name: 'userprofile',
     component: Userprofile
+  },
+  {
+    path: '/userpage',
+    name: 'userpage',
+    component: Userpage
   },
   { 
     path:'/moviedetail/:id',

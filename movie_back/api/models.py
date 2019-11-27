@@ -33,4 +33,5 @@ class Rating(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='ratings')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='ratings', on_delete=models.CASCADE)
     username = models.CharField(max_length=50)
+    movietitle = models.CharField(max_length=50)
     

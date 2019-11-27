@@ -13,9 +13,7 @@
           right
           v-if="searchBool"
         >
-          <b-dropdown-item v-if="!isLoggedIn" @click="goLogin">로그인 해주세요.</b-dropdown-item>
           <b-dropdown-item
-            v-else
             v-for="genre in genres"
             :key="genre.id"
             @click="selectGenre(genre.name)"
@@ -30,10 +28,9 @@
           right
           v-if="searchBool"
         >
-          <b-dropdown-item v-if="!isLoggedIn" @click="goLogin">로그인 해주세요.</b-dropdown-item>
-          <b-dropdown-item v-if="isLoggedIn" @click="searchSelect(0)">감독</b-dropdown-item>
-          <b-dropdown-item v-if="isLoggedIn" @click="searchSelect(1)">배우</b-dropdown-item>
-          <b-dropdown-item v-if="isLoggedIn" @click="searchSelect(2)">영화제목</b-dropdown-item>
+          <b-dropdown-item  @click="searchSelect(0)">감독</b-dropdown-item>
+          <b-dropdown-item  @click="searchSelect(1)">배우</b-dropdown-item>
+          <b-dropdown-item  @click="searchSelect(2)">영화제목</b-dropdown-item>
         </b-nav-item-dropdown>
 
         <b-nav-form v-if="!searchBool">
@@ -50,7 +47,7 @@
         <option value="2">회원평점순</option>
       </select>
     </div>
-    <MovieList :movies="selectSort" :currentPage="currentPage"/>
+    <MovieList :movies="selectSort" :currentPage="currentPage" />
   </div>
 </template>
 
@@ -64,7 +61,7 @@ export default {
   name: "Home",
   data() {
     return {
-      currentPage:1,
+      currentPage: 1,
       genreText: "장르별",
       origin_movies: [],
       movies: [],
@@ -72,7 +69,7 @@ export default {
       sortNm: 0,
       searchBool: true,
       phSearch: "",
-      searchText: "",
+      searchText: ""
     };
   },
   computed: {
@@ -146,7 +143,7 @@ export default {
             break;
           }
         }
-        return tempBool
+        return tempBool;
       });
     },
 
@@ -169,7 +166,7 @@ export default {
 
     searching() {
       this.selectTotal();
-      this.searchingBool = true
+      this.searchingBool = true;
       if (!this.searchText.trim()) {
         return;
       }
@@ -198,9 +195,7 @@ export default {
 
   mounted() {
     this.getMovies();
-    if (this.isLoggedIn) {
-      this.getGenres();
-    }
+    this.getGenres();
   }
 };
 </script>

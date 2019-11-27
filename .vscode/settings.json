@@ -1,5 +1,11 @@
 {
     "git.ignoreLimitWarning": true,
     "python.pythonPath": "movie_back\\venv\\Scripts\\python.exe",
-    "python.linting.enabled": false
+    "python.linting.enabled": false,
+    "files.associations": {
+        "**/templates/*.html": "django-html",
+        "**/templates/*": "django-txt",
+        "**/requirements{/**,*}.{txt,in}": "pip-requirements",
+        "**/*.config": "yaml"
+    },
 }

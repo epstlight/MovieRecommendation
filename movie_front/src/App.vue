@@ -3,9 +3,11 @@
     <div id="nav" class="header clearfix navbar-expand-sm navbar-light bg-light">
       <div v-if="isLoggedIn">
         <router-link to="/">Movie Infomation</router-link> 
+        <router-link class="float-right" to="/userprofile" ><img src="@/images/user_1.png" alt="userprofile"></router-link>
+        <span class="float-right mx-1"> | </span>
         <a class="float-right" @click.prevent="logout" href="logout/">Logout</a>
         <span class="float-right mx-1"> | </span>
-        <router-link class="float-right" to="/userprofile" ><img src="@/images/user_1.png" alt="userprofile"></router-link> 
+        <router-link class="float-right" to="/userpage" >UserPage</router-link> 
       </div>
       <div v-else>
         <router-link to="/">Movie Infomation</router-link>

@@ -101,8 +101,8 @@
           <img src="@/images/star.png" alt="score">
           <div class="mt-2 pl-3" >{{ rating.comment }}</div>
         </b-col>
-        <b-col col lg="3" align-self="center" class="mt-3">
-          <img v-if="userId === rating.user" class="btn" src="@/images/delete_rating.png" alt="delete" @click="deleteRating(rating.id)">
+        <b-col col lg="3" align-self="center" class="mt-3 btn">
+          <img v-if="userId === rating.user" src="@/images/delete_rating.png" alt="delete" @click="deleteRating(rating.id)" style="cursor: pointer;" >
         </b-col>
       </b-row>
       <hr>

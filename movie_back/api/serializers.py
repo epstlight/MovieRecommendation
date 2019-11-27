@@ -6,7 +6,7 @@ from accounts.models import User
 class RatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rating
-        fields = ['id', 'comment', 'score', 'created_at', 'user', 'username']
+        fields = ['id', 'comment', 'score', 'created_at', 'user', 'username', 'movie','movietitle']
 
 
 class GenreSerializer(serializers.ModelSerializer):
