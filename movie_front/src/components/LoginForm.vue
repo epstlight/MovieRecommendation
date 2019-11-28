@@ -34,8 +34,6 @@
       </div>
 
       <button class="btn btn-success" @click="login">Login</button>
-      <router-link class="btn btn-primary ml-1" to="/signup" >Go to SignUp</router-link>
-
     </div>
   </div>
 </template>

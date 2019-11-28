@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <b-card-group deck class="card-deck mt-2 mb-5">
+  <div >
+    <b-card-group deck class="card-deck pt-2 pb-5">
       <MovieListItem
         v-for="movie in selectMovies1"
         :key="movie.id"
@@ -22,7 +22,7 @@
       <b-card id="noBorder" class="col-3" v-for="i in blackMovies2" :key="i"></b-card>
     </b-card-group>
 
-    <div class="d-flex justify-content-center mb-3">
+    <div class="d-flex justify-content-center pb-5">
       <b-pagination
         v-model="pageNumber"
         :total-rows="rows"
@@ -93,5 +93,8 @@ export default {
 <style>
  #noBorder {
    border: none;
+ }
+ a.page-link{
+   color: black
  }
 </style>

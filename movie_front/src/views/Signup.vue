@@ -1,33 +1,36 @@
 <template>
-  <div class="container my-4">
+  <div class="container">
     <h1>Sign Up</h1>
-    <hr>
+    <hr />
     <SignupForm />
   </div>
-  
 </template>
 
 <script>
-import SignupForm from '@/components/SignupForm'
+import SignupForm from "@/components/SignupForm";
 import { mapGetters } from "vuex";
-import router from "@/router"
+import router from "@/router";
 
 export default {
-  name: 'Signup',
+  name: "Signup",
   components: {
-    SignupForm, 
+    SignupForm
   },
   computed: {
     ...mapGetters(["isLoggedIn", "options", "userId"])
   },
-  created(){
+  created() {
     if (this.isLoggedIn) {
-      router.push('/home')
+      router.push("/home");
     }
   }
-}
+};
 </script>
 
 <style>
-
+  .container {
+    min-height: 100%;
+    border: 0;
+    padding: 0;
+  }
 </style>

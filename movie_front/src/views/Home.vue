@@ -1,9 +1,9 @@
 <template>
-  <div class="home mx-5 my-4">
-    <h1 class="text-center">Movie List</h1>
+  <div class="home mx-5 pt-5">
+    <h1 class="text-center text-light">Movie List</h1>
     <hr />
     <div id="nav" class="p-0">
-      <b-nav pills class="justify-content-center">
+      <b-nav pills class="indexbar justify-content-center">
         <b-nav-item class="mx-1" @click="selectTotal">전체</b-nav-item>
         <b-nav-item-dropdown
           class="mx-1"
@@ -41,7 +41,7 @@
     </div>
     <hr />
     <div class="nav">
-      <select class="ml-auto" v-model="sortNm">
+      <select class="ml-auto" v-model="sortNm" style="height: 2rem;">
         <option value="0">최신순</option>
         <option value="1">네이버평점순</option>
         <option value="2">회원평점순</option>
@@ -202,16 +202,20 @@ export default {
 }
 #nav li a {
   font-size: 20px;
-  color: gray;
+  color: white;
+  background-color:grey
 }
 #nav li a:hover {
   font-size: 21px;
   color: white;
-  background-color: gray;
+  background-color: grey;
 }
 #nav li a:active {
   font-size: 20px;
   color: white;
-  background-color: gray;
+  background-color: grey;
+}
+ul.dropdown-menu {
+  padding: 0;
 }
 </style>

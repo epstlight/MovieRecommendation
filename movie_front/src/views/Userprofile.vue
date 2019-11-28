@@ -1,8 +1,8 @@
 <template>
-  <div class="container my-4">
+  <div class="container py-5">
     <div v-if="!updateBool">
-      <UserProfileForm :credential="credential" />
-      <button class="btn btn-primary " @click="goBack">뒤로가기</button>
+      <UserProfileForm :credential="credential"  />
+      <button class="btn btn-primary" @click="goBack">뒤로가기</button>
       <button class="btn btn-success ml-3" @click="update">Update</button>
       <button class="btn btn-danger ml-3" @click="withdraw">Withdraw</button>
       <div v-if="withdrawBool">
@@ -26,7 +26,7 @@
       </div>
     </div>
     <div v-else>
-      <UserProfileUpdateForm :credential="credential"/>
+      <UserProfileUpdateForm :credential="credential" />
     </div>
   </div>
 </template>
@@ -34,7 +34,7 @@
 <script>
 import UserProfileForm from "@/components/UserProfileForm";
 import UserProfileUpdateForm from "@/components/UserProfileUpdateForm";
-import { mapGetters } from "vuex"; 
+import { mapGetters } from "vuex";
 import axios from "axios";
 import router from "@/router";
 
@@ -44,7 +44,7 @@ export default {
     UserProfileForm,
     UserProfileUpdateForm
   },
-  
+
   data() {
     return {
       updateBool: false,
@@ -62,7 +62,7 @@ export default {
   methods: {
     withdrawConfirm() {
       const SERVER_IP = process.env.VUE_APP_SERVER_IP;
-      this.errors = []
+      this.errors = [];
       axios
         .post(
           `${SERVER_IP}/accounts/check_password/${this.userId}/`,
@@ -96,14 +96,14 @@ export default {
       this.updateBool = true;
     },
     withdraw() {
-      this.withdrawBool = this.withdrawBool ? false : true ;
+      this.withdrawBool = this.withdrawBool ? false : true;
     },
     getUserProfile() {
       const SERVER_IP = process.env.VUE_APP_SERVER_IP;
       axios
         .get(`${SERVER_IP}/accounts/userprofile/${this.userId}/`, this.options)
         .then(response => {
-          console.log(response.data)
+          console.log(response.data);
           this.credential = {
             username: response.data.username,
             email: response.data.email,
@@ -114,18 +114,22 @@ export default {
           console.log(error);
         });
     },
-    goBack(){
-      router.go(-1)      
+    goBack() {
+      router.go(-1);
     }
   },
   created() {
     if (!this.isLoggedIn) {
-      router.push('/login')
+      router.push("/login");
     }
-      this.getUserProfile();
-  },
+    this.getUserProfile();
+  }
 };
 </script>
+ 
 
 <style>
+ .container {
+    padding-bottom: 5rem;
+  }
 </style>

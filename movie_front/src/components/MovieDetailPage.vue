@@ -34,7 +34,7 @@
         <b-embed type="iframe" aspect="16by9" :src="movie.trailer_url" allowfullscreen></b-embed>
       </b-col>
       <b-col>
-        <div>
+        <div class="pt-3">
           <span v-for="genre in movie.genres" :key="genre.id">{{ genre.name }} | </span>
           <span>{{ movie.grade }} |</span>
           <span>
@@ -49,14 +49,14 @@
           <span class="font-weight-bold">배우 : </span>
           <span>{{ actor_list.join(', ')  }}</span>
         </div>
-        <div class="mt-2">
-          <hr />
-          <h5>줄거리</h5>
-          <p>{{ movie.summary }}</p>
+          <hr class="select" />
+        <div class="pt-4">
+          <h3 >줄거리</h3>
+          <p class="pt-4">{{ movie.summary }}</p>
         </div>
       </b-col>
     </b-row>
-    <hr />
+    <hr class="select mx-3" />
     <h4 class="mx-4">Review</h4>
     <b-row class="justify-content-center mx-5 mt-3">
       <b-col>
@@ -104,7 +104,7 @@
                   class="text-secondary text-center pt-3"
                 >{{ rating.created_at.substr(5, 5).replace('-', '/') }} {{ rating.created_at.substr(11,5)}}</p>
               </div>
-              <div class="col-10 pl-0">
+              <div class="col-10 pl-0 review-content">
                 <p>
                   <a class="float-left my-2">
                     <strong style="font-size:2rem;">{{rating.username}}</strong>
@@ -237,4 +237,10 @@ export default {
 };
 </script>
 <style>
+hr.select {
+  border: solid 2px white;
+}
+.review-content{
+  color: black;
+}
 </style>

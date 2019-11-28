@@ -1,6 +1,6 @@
 <template>
-  <div class="my-4"> 
-    <h1 class="d-flex justify-content-center my-2">Movie Detail</h1>
+  <div class="py-5"> 
+    <h1 class="d-flex justify-content-center ">Movie Detail</h1>
     <hr />
     <MovieDetailPage :movie="movie" :director_list="director_list" :actor_list="actor_list" :likeBool="likeBool" @likeUnlike="likeUnlike"/>
   </div>

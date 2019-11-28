@@ -1,5 +1,5 @@
 <template>
-  <div class="container my-4">
+  <div class="container">
     <h1>Log In</h1>
     <hr>
     <LoginForm />
@@ -27,4 +27,9 @@ export default {
 </script>
 
 <style>
+.container {
+  min-height: 100%;
+  border: 0;
+  padding: 0;
+}
 </style>

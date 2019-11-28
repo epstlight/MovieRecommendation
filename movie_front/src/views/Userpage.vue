@@ -1,10 +1,10 @@
 <template>
-  <div class="my-4">
+  <div class="pt-2">
     <div>
-      <b-nav tabs align="center">
-        <b-nav-item :active="false" @click="goBack">Back</b-nav-item>
-        <b-nav-item :active="userBool" @click="userTabSelect1">My Movies</b-nav-item>
-        <b-nav-item :active="!userBool" @click="userTabSelect2">My Comment</b-nav-item>
+      <b-nav tabs align="center" class="font-weight-bold" id="nav-bar">
+        <b-nav-item @click="goBack">Back</b-nav-item>
+        <b-nav-item  @click="userTabSelect1">My Movies</b-nav-item>
+        <b-nav-item @click="userTabSelect2"  variant="primary">My Comment</b-nav-item>
       </b-nav>
     </div>
     <div>
@@ -92,4 +92,11 @@ export default {
 </script>
 
 <style>
+ #nav-bar :defined{
+   color: white;
+   border: none;
+ }
+ #nav-bar :hover{
+   color: #42b983;
+ }
 </style>

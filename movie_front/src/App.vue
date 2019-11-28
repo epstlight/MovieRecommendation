@@ -1,25 +1,26 @@
 <template>
   <div id="app">
-    <div id="nav" class="header clearfix navbar-expand-sm navbar-light bg-light">
-      <div v-if="isLoggedIn" class>
+    <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
+    <div id="nav" v-if="isLoggedIn" class="header clearfix navbar-expand-sm navbar-light">
+      <div class>
         <router-link to="/home">Movie Infomation</router-link>
-        <router-link class="float-right" to="/userprofile">
-          <img src="@/assets/images/user_1.png" alt="userprofile" />
-        </router-link>
-        <span class="float-right mx-1">|</span>
         <a class="float-right" @click.prevent="logout" href="logout/">Logout</a>
         <span class="float-right mx-1">|</span>
-        <router-link class="float-right" to="/userpage">UserPage</router-link>
+        <router-link class="float-right" to="/userprofile">My Profile</router-link>
+        <span class="float-right mx-1">|</span>
+        <router-link class="float-right" to="/userpage">My Movies</router-link>
       </div>
-      <div v-else>
+      <!-- <div v-else class="header clearfix navbar-expand-sm navbar-light">
         <router-link to="/">Movie Infomation</router-link>
-        <!-- <router-link class="float-right" to="/login" >Login</router-link>
+        <router-link class="float-right" to="/login" >Login</router-link>
         <span class="float-right mx-1"> | </span>
-        <router-link class="float-right" to="/signup" >Signup</router-link>-->
-      </div>
+        <router-link class="float-right" to="/signup" >Signup</router-link>
+      </div> -->
+  
+
       <go-top :size="40" :z-index="800" :bottom="30" :right="25" bg-color="#42b983"></go-top>
     </div>
-    <div>
+    <div class="body">
       <router-view />
     </div>
   </div>
@@ -59,7 +60,7 @@ export default {
 
 <style>
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Jua', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -70,9 +71,28 @@ export default {
 }
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: white;
 }
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+.header {
+  border: 0;
+  padding: 0;
+  background-color: black;
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.8;
+  filter: alpha(opacity=40);
+}
+.body {
+  border: 0;
+  padding: 0;
+  background-image: url("assets/images/background.png");
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+  color: white;
 }
 </style>
