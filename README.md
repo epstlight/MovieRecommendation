@@ -24,7 +24,7 @@
 
 ## iii. 데이터베이스 모델링(ERD)
 
-![erd](C:\Users\kazya\MovieRecommendation\erd.png)
+![erd](./images/erd.png)
 
 ## iv. 핵심 기능
 
