@@ -14,5 +14,4 @@ urlpatterns = [
     path('ratings/<int:rating_id>/', views.get_rating),
     path('movies/<int:movie_id>/', views.get_movie),
     path('movies/<int:movie_id>/unlike_like/<int:user_id>/', views.unlike_like),
-    # path('movies_update/', views.movies_update),
 ]
