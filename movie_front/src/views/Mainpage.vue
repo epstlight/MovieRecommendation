@@ -1,8 +1,10 @@
 <template>
   <div>
-    <b-button size="lg" pill variant="outline-secondary" class="position-absolute" @click="goLogin">login</b-button>
-    <b-button size="lg" pill variant="outline-secondary" class="position-absolute" @click="goSignup">signup</b-button>
-    <b-img src="https://picsum.photos/300/150/?image=41" fluid-grow alt="image"></b-img>
+    <b-button-group id="twobtn" size="lg" class="position-fixed" vertical style="width: 20%; margin-top: 30%; margin-left:40%;">
+      <b-button pill variant="success" @click="goLogin" class="mb-4 font-weight-bold">Login</b-button>
+      <b-button pill variant="success" @click="goSignup" class="font-weight-bold">Signup</b-button>
+    </b-button-group>
+    <b-img :src="require('../assets/images/mainback.png')" fluid-grow alt="image" style="position:absolute; filter: blur(5px); z-index:-1;"></b-img>
   </div>
 </template>
 
@@ -35,4 +37,6 @@ export default {
 </script>
 
 <style>
+ #twobtn {
+ }
 </style>

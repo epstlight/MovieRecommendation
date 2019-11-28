@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="mx-4">
     <div>
       <h2 class="d-flex justify-content-center">{{ movie.title }}</h2>
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between mx-5" style="height:2rem;">
         <b-button size="sm" class="sm align-self-end" @click="goBack">뒤로가기</b-button>
         <!-- <b-button class="sm align-self-end p-0 b-0" v-if="likeBool" @click="movie_like"> -->
         <h5
-          class="text-muted d-inline ml-5"
+          class="text-muted d-inline"
         >{{ movie.title_en }}, {{ String(movie.opendt).substr(0, 4) }}</h5>
         <div>
           <b-button variant="white" class="align-self-end" @click="movie_like">
@@ -14,14 +14,14 @@
             v-if="likeBool" 
             class="sm btn align-self-end p-0"
             style="cursor:pointer;"
-            src="@/images/like.png"
+            src="@/assets/images/like.png"
             alt="like"
           />
           <img
             v-else
             class="btn sm align-self-end p-0"
             style="cursor:pointer;"
-            src="@/images/unlike.png"
+            src="@/assets/images/unlike.png"
             alt="unlike"
           />
         </b-button>
@@ -57,8 +57,8 @@
       </b-col>
     </b-row>
     <hr />
-    <h4>Review</h4>
-    <b-row class="justify-content-center mx-3 mt-3">
+    <h4 class="mx-4">Review</h4>
+    <b-row class="justify-content-center mx-5 mt-3">
       <b-col>
         <div class="form-group">
           <label for="comment">Comment</label>
@@ -95,19 +95,19 @@
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
       crossorigin="anonymous"
     />
-    <div id="review-div" class="mb-3" v-for="rating in movie.ratings" :key="rating.id">
-        <div class="card my-1">
-          <div class="card-body">
+    <div id="review-div" class="mb-3 mx-4" v-for="rating in movie.ratings" :key="rating.id">
+        <div class="card my-1 col-10">
+          <div class="card-body p-0">
             <div class="row">
-              <div class="col-md-2">
+              <div class="col-2">
                 <p
-                  class="text-secondary text-center"
+                  class="text-secondary text-center pt-3"
                 >{{ rating.created_at.substr(5, 5).replace('-', '/') }} {{ rating.created_at.substr(11,5)}}</p>
               </div>
-              <div class="col-md-10">
+              <div class="col-10 pl-0">
                 <p>
-                  <a class="float-left">
-                    <strong>{{rating.username}}</strong>
+                  <a class="float-left my-2">
+                    <strong style="font-size:2rem;">{{rating.username}}</strong>
                   </a>
                   <span class="float-right" v-for="i in rating.score" :key="i">
                     <i class="text-warning fa fa-star"></i>
@@ -118,8 +118,8 @@
                 <div class="float-right">
                 <img
                   v-if="userId === rating.user"
-                  class="btn mx-auto"
-                  src="@/images/delete_rating.png"
+                  class="btn mx-auto mb-2 position-relative"
+                  src="@/assets/images/delete_rating.png"
                   alt="delete"
                   style="cursor:pointer;"
                   @click="deleteRating(rating.id)"

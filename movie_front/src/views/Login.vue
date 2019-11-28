@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container my-4">
     <h1>Log In</h1>
     <hr>
     <LoginForm />

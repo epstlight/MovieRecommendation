@@ -1,13 +1,10 @@
 <template>
   <div id="app">
-    <div
-      id="nav"
-      class="header clearfix navbar-expand-sm navbar-light bg-light"
-    >
-      <div v-if="isLoggedIn" class="mb-4">
+    <div id="nav" class="header clearfix navbar-expand-sm navbar-light bg-light">
+      <div v-if="isLoggedIn" class>
         <router-link to="/home">Movie Infomation</router-link>
         <router-link class="float-right" to="/userprofile">
-          <img src="@/images/user_1.png" alt="userprofile" />
+          <img src="@/assets/images/user_1.png" alt="userprofile" />
         </router-link>
         <span class="float-right mx-1">|</span>
         <a class="float-right" @click.prevent="logout" href="logout/">Logout</a>
@@ -18,8 +15,9 @@
         <router-link to="/">Movie Infomation</router-link>
         <!-- <router-link class="float-right" to="/login" >Login</router-link>
         <span class="float-right mx-1"> | </span>
-        <router-link class="float-right" to="/signup" >Signup</router-link>  -->
+        <router-link class="float-right" to="/signup" >Signup</router-link>-->
       </div>
+      <go-top :size="40" :z-index="800" :bottom="30" :right="25" bg-color="#42b983"></go-top>
     </div>
     <div>
       <router-view />
@@ -31,12 +29,15 @@
 <script>
 import { mapGetters } from "vuex";
 import router from "@/router";
+import GoTop from "@inotom/vue-go-top";
 export default {
   name: "App",
   data() {
     return {};
   },
-
+  components: {
+    GoTop
+  },
   methods: {
     logout() {
       this.$session.destroy();

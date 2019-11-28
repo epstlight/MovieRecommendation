@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div class="my-4">
     <div>
       <b-nav tabs align="center">
+        <b-nav-item :active="false" @click="goBack">Back</b-nav-item>
         <b-nav-item :active="userBool" @click="userTabSelect1">My Movies</b-nav-item>
         <b-nav-item :active="!userBool" @click="userTabSelect2">My Comment</b-nav-item>
       </b-nav>
@@ -76,7 +77,10 @@ export default {
     },
     userTabSelect2(){
       this.userBool = false
-    }
+    },
+    goBack() {
+      router.go(-1);
+    },
   },
   created() {
     if (!this.isLoggedIn) {

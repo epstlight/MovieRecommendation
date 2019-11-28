@@ -1,5 +1,5 @@
 <template>
-  <div class="home mx-5 mb-2">
+  <div class="home mx-5 my-4">
     <h1 class="text-center">Movie List</h1>
     <hr />
     <div id="nav" class="p-0">

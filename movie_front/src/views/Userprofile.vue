@@ -1,8 +1,9 @@
 <template>
-  <div class="container">
+  <div class="container my-4">
     <div v-if="!updateBool">
       <UserProfileForm :credential="credential" />
-      <button class="btn btn-success" @click="update">Update</button>
+      <button class="btn btn-primary " @click="goBack">뒤로가기</button>
+      <button class="btn btn-success ml-3" @click="update">Update</button>
       <button class="btn btn-danger ml-3" @click="withdraw">Withdraw</button>
       <div v-if="withdrawBool">
         <hr />
@@ -113,6 +114,9 @@ export default {
           console.log(error);
         });
     },
+    goBack(){
+      router.go(-1)      
+    }
   },
   created() {
     if (!this.isLoggedIn) {
