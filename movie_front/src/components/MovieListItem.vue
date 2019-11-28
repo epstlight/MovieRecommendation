@@ -1,7 +1,8 @@
 <template>
   <b-card class="card border col-3" title="" :img-src="movie.poster_url" img-alt="poster" >
     <b-card-text>
-      <span class="badge badge-success" v-text="movie.naver_score"></span>
+      <span class="badge badge-success mr-1" v-text="movie.naver_score" ></span>
+      <span class="badge badge-danger">♥ {{ movie.liked_users.length }}</span>
       <br />
       <h4 class="card-title mt-1 mb-0" v-text="movie.title" @click="goDetail" style="cursor:pointer; color:black;"></h4>
       <small class="text-muted mb-0" @click="goDetail" style="cursor:pointer;">({{ movie.grade }})</small>

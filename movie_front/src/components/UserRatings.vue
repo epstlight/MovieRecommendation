@@ -1,12 +1,15 @@
 <template>
-  <div class="pt-3 px-5">
+  <div class="py-3 px-5">
     <link
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       rel="stylesheet"
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
       crossorigin="anonymous"
     />
-    <div id="review-div" v-for="rating in sortRatings" :key="rating.id" class="my-2 mx-5">
+    <div v-if="sortRatings.length === 0" class="text-center noneMovie">
+      작성한 Comment가 없습니다.
+    </div>
+    <div id="review-div" v-for="rating in sortRatings" :key="rating.id" class="my-2 mx-5" style="padding-bottom: 30%;">
       <div class="card">
         <div class="card-body">
           <div class="row">

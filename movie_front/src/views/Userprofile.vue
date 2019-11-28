@@ -1,11 +1,14 @@
 <template>
-  <div class="container py-5">
+  <div class="container py-5" >
     <div v-if="!updateBool">
       <UserProfileForm :credential="credential"  />
-      <button class="btn btn-primary" @click="goBack">뒤로가기</button>
-      <button class="btn btn-success ml-3" @click="update">Update</button>
-      <button class="btn btn-danger ml-3" @click="withdraw">Withdraw</button>
-      <div v-if="withdrawBool">
+      <div>
+        <button class="btn btn-primary" @click="goBack">뒤로가기</button>
+        <button class="btn btn-success ml-3" @click="update">Update</button>
+        <button class="btn btn-danger ml-3" @click="withdraw">Withdraw</button>
+      </div>
+      <div id="downpage">
+        <div v-if="withdrawBool" >
         <hr />
         <div v-if="errors.length" class="alert alert-danger">
           <h4>다음의 오류를 해결해주세요.</h4>
@@ -24,6 +27,9 @@
         </div>
         <button class="btn btn-danger mt-3" @click="withdrawConfirm">Confirm</button>
       </div>
+
+      </div>
+      
     </div>
     <div v-else>
       <UserProfileUpdateForm :credential="credential" />
@@ -129,7 +135,7 @@ export default {
  
 
 <style>
- .container {
-    padding-bottom: 5rem;
+ #downpage {
+    margin-bottom: 35%;
   }
 </style>

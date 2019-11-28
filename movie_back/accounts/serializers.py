@@ -5,7 +5,12 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['id', 'username', 'email', 'gender', 'password', 'liked_movies', 'ratings']
-    
+
+class UserCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email', 'gender', 'password']
+            
     def create(self, validated_data):
         user = User(
             email=validated_data['email'],
@@ -15,4 +20,5 @@ class UserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
         return user
+
 

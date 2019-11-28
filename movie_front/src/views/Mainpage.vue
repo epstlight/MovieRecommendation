@@ -3,7 +3,7 @@
     <div
       class="position-fixed text-center"
       vertical
-      style="width:100%; margin-top: 8%; font-size:5rem; color:white;">EP EP EP EP EP EP</div>
+      style="width:100%; margin-top: 10%; font-size:6rem; color:white;">J O K E R S T</div>
     <b-button-group
       size="lg"
       class="position-fixed"

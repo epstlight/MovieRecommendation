@@ -1,6 +1,9 @@
 <template>
-  <div class="mt-3">
-    <MovieList :movies="userLikedMoviesList" :currentPage="currentPage"/>
+  <div class="mt-3 px-3">
+    <div v-if="userLikedMoviesList.length === 0" class="text-center noneMovie">
+      좋아요한 영화가 없습니다.
+    </div>
+    <MovieList v-if="userLikedMoviesList.length !== 0" :movies="userLikedMoviesList" :currentPage="currentPage"/>
   </div>
 </template>
 
@@ -22,9 +25,13 @@ export default {
       currentPage:1,
     }
   }
-  
 }
 </script>
 
 <style>
+  .noneMovie{
+    font-size: 4rem;
+    padding-top: 20%;
+    padding-bottom: 25%;
+  }
 </style>

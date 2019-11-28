@@ -44,7 +44,7 @@
       <select class="ml-auto" v-model="sortNm" style="height: 2rem;">
         <option value="0">최신순</option>
         <option value="1">네이버평점순</option>
-        <option value="2">회원평점순</option>
+        <option value="2">좋아요순</option>
       </select>
     </div>
     <MovieList :movies="selectSort" :currentPage="currentPage" />
@@ -86,9 +86,9 @@ export default {
         });
       } else if (this.sortNm == 2) {
         return clone.sort(function(a, b) {
-          return a.avr_score > b.avr_score
+          return a.liked_users.length > b.liked_users.length
             ? -1
-            : a.avr_score < b.avr_score
+            : a.liked_users.length < b.liked_users.length
             ? 1
             : 0;
         });

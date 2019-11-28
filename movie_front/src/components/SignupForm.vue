@@ -94,7 +94,7 @@ export default {
           username: this.credentials.username,
           password: this.credentials.password,
           email: this.credentials.email,
-          gender: this.credentials.gender
+          gender: this.credentials.gender,
         }
         
         axios
@@ -106,7 +106,7 @@ export default {
               this.$session.set("jwt", response.data.token);
               this.$store.dispatch("login", response.data.token);
               this.loading = false
-              router.push("/")
+              router.push("/home")
               })
             .catch(error => {
               console.log(error)

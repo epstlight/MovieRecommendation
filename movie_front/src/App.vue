@@ -3,7 +3,7 @@
     <link href="https://fonts.googleapis.com/css?family=Jua&display=swap" rel="stylesheet">
     <div id="nav" v-if="isLoggedIn" class="header clearfix navbar-expand-sm navbar-light">
       <div class>
-        <router-link to="/home">Movie Infomation</router-link>
+        <router-link to="/home">Movie Information</router-link>
         <a class="float-right" @click.prevent="logout" href="logout/">Logout</a>
         <span class="float-right mx-1">|</span>
         <router-link class="float-right" to="/userprofile">My Profile</router-link>

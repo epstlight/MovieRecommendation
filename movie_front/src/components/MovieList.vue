@@ -1,6 +1,6 @@
 <template>
   <div >
-    <b-card-group deck class="card-deck pt-2 pb-5">
+    <b-card-group deck class="card-deck pt-2 pb-5 px-3">
       <MovieListItem
         v-for="movie in selectMovies1"
         :key="movie.id"
@@ -11,7 +11,7 @@
       <b-card id="noBorder" class="col-3 b-none" v-for="i in blackMovies1" :key="i"></b-card>
     </b-card-group>
 
-    <b-card-group deck class="card-deck mb-5">
+    <b-card-group deck class="card-deck pb-5 px-3">
       <MovieListItem
         v-for="movie in selectMovies2"
         :key="movie.id"
@@ -93,6 +93,7 @@ export default {
 <style>
  #noBorder {
    border: none;
+   opacity: 0;
  }
  a.page-link{
    color: black

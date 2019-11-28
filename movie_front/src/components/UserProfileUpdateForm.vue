@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pb-5">
     <h1>User Profile Update</h1>
     <hr />
     <div v-if="loading" class="spinner-border" role="status">

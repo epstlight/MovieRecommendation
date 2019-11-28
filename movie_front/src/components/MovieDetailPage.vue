@@ -85,7 +85,7 @@
         </div>
       </b-col>
       <b-col col lg="3" align-self="center" class="mt-3">
-        <b-button size="sm" @click="addRating">Add</b-button>
+        <b-button size="sm" class="btn-success" @click="addRating">Add</b-button>
       </b-col>
     </b-row>
     <hr />
