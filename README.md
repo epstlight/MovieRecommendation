@@ -39,11 +39,3 @@
 https://jokerst-movie-vue.firebaseapp.com/
 ```
 
-
-
-## vi. 기타 (느낀점)
-
-- 강희원 :  vue를 구현하면서 component, probs 등에 익숙해질 수 있었고,  single page application을 경험할수 있었다.
-
-- 윤성민 :  데이터 베이스를 구축하면서 dumpdata 와 loaddata의 소중함을 느낄 수 있었다.
-
